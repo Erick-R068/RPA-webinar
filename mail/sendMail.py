@@ -5,7 +5,7 @@ from mail.getSecret import get_secret
 
 def send_mail(stock_status):
 
-    project_ID = "38302283146"
+    project_ID = "38302283146"        # Modificar segun ruta que muestra la consola de Secret Manager
     version = "latest"
 
     sender_mail = get_secret("origin_mail", project_ID, version)
