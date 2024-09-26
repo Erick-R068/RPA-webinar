@@ -1,0 +1,20 @@
+runtime: custom
+env: flex
+service: default
+
+entrypoint: gunicorn -c gunicorn_config.py main:app  # Ejecuta la app con Gunicorn
+
+resources:
+  cpu: 2
+  memory_gb: 4
+  disk_size_gb: 15
+
+automatic_scaling:
+  min_num_instances: 1  # Mantener siempre una instancia
+  max_num_instances: 4  # Máximo de instancias a escalar
+  cpu_utilization:
+    target_utilization: 0.75 # Escalar cuando la CPU esté al 75%
+
+handlers:
+  - url: /.*  # Todas las rutas serán manejadas por la aplicación
+    script: auto
